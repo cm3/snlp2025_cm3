@@ -1,0 +1,6 @@
+.DS_Store
+.vite/
+box/
+
+# LibreOffice/OpenOffice lock files
+*.~lock.*
