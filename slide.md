@@ -4,50 +4,41 @@ title: "\"INCLUDE: Evaluating Multilingual and Geographically Fair LLMs\" の解
 theme: default
 paginate: true
 style: |
-  .answer-button {
-    display: inline-block;
-    padding: 0.5em 1em;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1em;
-    margin-top: 1em;
-  }
   .show {
     color: #cc0000;
     font-weight: bold;
   }
-
+  section {
+    font-family: sans-serif;
+  }
+  .flag {
+    font-size: 1.2em;
+    margin-right: 0.3em;
+  }
+  .card {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 12px;
+    margin: 10px 0;
+  }
+  .bg-blue {
+    background-color: #c7eef7;
+  }
+  .bg-purple {
+    background-color: #e0d4f2;
+  }
 ---
 
 # Angelika Romanou et al. "INCLUDE: Evaluating Multilingual and Geographically Fair LLMs" の解説
 
-人間文化研究機構　亀田 尭宙
+読む人: 人間文化研究機構　亀田 尭宙
 
 - ICML2025
 - 著者は60人!
 - LLMの地理的・文化的バイアスを評価する新しい枠組み
-- [CohereLabs/include-base-44 · Datasets at Hugging Face](https://huggingface.co/datasets/CohereLabs/include-base-44) データセットは小規模
+- [CohereLabs/include-base-44 · Datasets at Hugging Face](https://huggingface.co/datasets/CohereLabs/include-base-44)
 - [[2411.19799] INCLUDE: Evaluating Multilingual Language Understanding with Regional Knowledge](https://arxiv.org/abs/2411.19799)
 
----
-
-# 薬物テストは何を測るためか
-
-*(country: Japan, subject: Driving License, regional_feature: region explicit)*
-
-1. 反応時間  
-2. <span id="answer1">血中アルコール濃度</span>
-3. 視力  
-4. 運転能力
-
-<div class="answer-container">
-  <button class="answer-button" onclick="document.getElementById('answer1').parentElement.classList.toggle('show')">
-    答え
-  </button>
-</div>
 
 ---
 
@@ -60,16 +51,112 @@ style: |
 
 ---
 
+## 🧾 地域知識
+
+<div class="card">
+  <span class="flag">🇬🇷</span>
+  Ποιο είναι το επιτρεπτό όριο αλκοόλ ανά λίτρο αίματος στην οδήγηση;<br>
+  <span class="flag">🇷🇺</span>
+  Какой уровень алкоголя в крови допустим при вождении?<br>
+  <span class="flag">🌐</span>
+  What is the Blood Alcohol Limit (BAC%) for driving?
+</div>
+
+（運転における血中アルコール濃度の制限は何パーセントですか？）
+
+| 🇮🇷 | 🇷🇺 🇯🇵 | 🇬🇷 | 🇺🇸 |
+|-----|-----|-----|-----|
+| 0.00 | 0.03 | 0.05 | 0.08 |
+
+> ✍️ 国ごとの法定BAC制限。**同じ質問でも地域知識が必要**なことを示す例。
+
+---
+
+# 🏛️ 文化知識
+
+### 🇮🇷 چرا اسکندر مقدونی در سال ۳۳۰ قبل از میلاد تخت جمشید را به آتش کشید؟ 
+
+（アレクサンダー大王は、なぜ紀元前330年にペルセポリスを焼き払ったのか？）
+
+| 番号   | 回答内容（訳）                | バイアス          |
+| ---- | ---------------------- | ------------- |
+| 1 | ペルシャ文化と歴史への侮辱          | 🇮🇷 ペルシャ文化視点 |
+| 2 | ブケパロスがハイドスペスの戦いで殺されたから |             |
+| 3 | 偶然起きた                  |             |
+| 4 | クセルクセス1世によるギリシャ侵攻への報復  | 🇬🇷 ギリシャ文化視点 |
+
+- 選択肢1と4は、それぞれ文化バイアス（Persian vs Greek）を示唆。
+
+---
+
+（みなさんも、読める言語を眺めてみてください）
+
+### 薬物テストは何を測るためか
+
+*(country: Japan, subject: Driving License, regional_feature: region explicit)*
+
+1. 反応時間  
+2. <span id="answer1" onclick="this.parentElement.classList.toggle('show')">血中アルコール濃度</span>
+3. 視力  
+4. 運転能力
+
+---
+
+## INCLUDE の分野
+
+<dl>
+<dt>🎭 芸術・人文学</dt>
+<dd>人文・法学、歴史、論理・哲学、宗教、文化学</dd>
+
+<dt>🧠 社会科学</dt>
+<dd>社会学、心理学、地理学</dd>
+
+<dt>📊 経済・商学</dt>
+<dd>経済学、金融、経営</dd>
+</dl>
+
+---
+
+## INCLUDE の分野 (cont.)
+
+<dl>
+<dt>🔬 理工系</dt>
+<dd>数学、物理、工学、計算機科学、化学、生物学</dd>
+
+<dt>⚕️ 健康・医学教育</dt>
+<dd>健康、医学</dd>
+
+<dt>👩‍⚖️ 専門職資格</dt>
+<dd>医師免許、教員試験、司法試験・法曹資格</dd>
+
+<dt>👷 職業免許</dt>
+<dd>運転免許、海技免許</dd>
+</dl>
+
+... など
+
+---
+
+## INCLUDE の言語
+
+<dl>
+  <dt><strong>High Resource</strong></dt>
+  <dd>Arabic, Chinese, Italian, French, German, Dutch, Indonesian, Russian, Spanish, Persian, Polish, Japanese, Portuguese, Vietnamese, Turkish</dd>
+
+  <dt><strong>Mid Resource</strong></dt>
+  <dd>Azerbaijani, Bulgarian, Greek, Croatian, Hungarian, Nepali, Serbian, Albanian, Lithuanian, Bengali, Estonian, Finnish, Hebrew, Hindi, Malay, Korean, Ukrainian, Tamil</dd>
+
+  <dt><strong>Low Resource</strong></dt>
+  <dd>Armenian, Basque, Macedonian, Tagalog, Malayalam, Georgian, Belarusian, Telugu, Urdu, Kazakh, Uzbek</dd>
+</dl>
+
+---
+
 ## INCLUDEの構成
 
-- **44言語・22,000問超の原言語MCQ（多肢選択）問題**
-- ソース：各国の教育試験・資格試験など
-- 翻訳なし、各言語で作問
-- 地域性レベル（4段階）をラベル付け：
-  1. Non-Regional  
-  2. Cultural  
-  3. Implicit Regional  
-  4. Explicit Regional
+- **44言語（15文字体系）・197,243件(58分野)の原言語 4 択問題**
+  - 1,926件の試験ソースから11万8千件以上のQAサンプル （約60%）
+  - ArabicMMLU（Koto et al., 2024）, ChineseMMLU（Li et al., 2023）, TurkishMMLU（Yuksel et al., 2024）, PersianMMLU（Ghahroodi et al., 2024）, VNHSGE（Dao et al., 2023）, EXAMS（Hardalov et al., 2020）合計 78,637件のサンプル（約40%）
 
 ---
 
